@@ -52,18 +52,23 @@ I=1
 while [[ $USER_GUESS != $NUMBER ]]
 do
 
-  if [[ $USER_GUESS > $NUMBER ]]
+  if [[ $USER_GUESS =~ ^[0-9]+$ ]]
   then
-    echo "It's lower than that, guess again:"
-  elif [[  $USER_GUESS < $NUMBER ]]
-  then
-    echo "It's higher than that, guess again:"
+    if [[ $USER_GUESS > $NUMBER ]]
+    then
+      echo "It's lower than that, guess again:"
+    elif [[  $USER_GUESS < $NUMBER ]]
+    then
+      echo "It's higher than that, guess again:"
+    fi
+
+    ((I++))
   else
     echo "That is not an integer, guess again:"
   fi
-
+  
   read USER_GUESS
-  ((I++))
+
 done
 
 echo "You guessed it in $I tries. The secret number was $NUMBER. Nice job!"
