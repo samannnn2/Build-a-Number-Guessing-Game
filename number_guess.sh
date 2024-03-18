@@ -44,3 +44,26 @@ else
 
   echo "Welcome back, $USER_NAME! You have played $USER_GAMES games, and your best game took $USER_RECORD guesses."
 fi
+
+echo "Guess the secret number between 1 and 1000:"
+read USER_GUESS
+I=1
+
+while [[ $USER_GUESS != $NUMBER ]]
+do
+
+  if [[ $USER_GUESS > $NUMBER ]]
+  then
+    echo "It's lower than that, guess again:"
+  elif [[  $USER_GUESS < $NUMBER ]]
+  then
+    echo "It's higher than that, guess again:"
+  else
+    echo "That is not an integer, guess again:"
+  fi
+
+  read USER_GUESS
+  ((I++))
+done
+
+echo "You guessed it in $I tries. The secret number was $NUMBER. Nice job!"
